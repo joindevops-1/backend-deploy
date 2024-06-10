@@ -22,6 +22,32 @@ pipeline {
                 }
             }
         }
+        stage('Init') {
+            steps {
+                sh """
+                    cd terraform
+                    terraform init -reconfigure
+                """
+            }
+        }
+        stage('Plan') {
+            steps {
+                sh """
+                    cd terraform
+                    terraform plan
+                """
+            }
+        }
+
+        stage('Plan') {
+            steps {
+                sh """
+                    cd terraform
+                    terraform apply -var="app_version=${params.appVersion}" -auto-approve
+                """
+            }
+        }
+
     }
     post { 
         always { 
