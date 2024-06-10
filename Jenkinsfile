@@ -39,7 +39,7 @@ pipeline {
             }
         }
 
-        stage('Plan') {
+        stage('Deploy') {
             steps {
                 sh """
                     cd terraform
